@@ -5,6 +5,7 @@
   --color-secondary: #01636c;
   --color-bg: #f4f4f4;
   --color-neutral-gray: #f1f1f1;
+  --color-gray-border: #E5E5E5;
   --color-text-default: #2a3648;
   --color-text-secondary: #4f596b;
   --color-error: #8d0000;
@@ -17,11 +18,13 @@
   --color-secondary: var(--color-secondary);
   --color-bg: var(--color-bg);
   --color-neutral-gray: var(--color-neutral-gray);
+  --color-neutral-gray-border: var(--color-gray-border);
   --color-text-default: var(--color-text-default);
   --color-text-secondary: var(--color-text-secondary);
   --color-error: var(--color-error);
   --color-warning: var(--color-warning);
   --color-success: var(--color-success);
+  --font-family-sans: var(--font-my-local), Arial, Helvetica, sans-serif;
 }
 
 * {
@@ -38,7 +41,7 @@ body {
   background: var(--color-bg);
   color: var(--color-text-default);
   direction: rtl;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: YekanBakh ,Arial, Helvetica, sans-serif;
   text-align: right;
 }
 

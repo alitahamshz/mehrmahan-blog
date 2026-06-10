@@ -52,21 +52,21 @@ export default function BlogHomePage() {
         type="application/ld+json"
       />
       <BlogHeader />
-      <div className="mx-auto grid max-w-[1360px] gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
-        <div className="lg:col-start-1 lg:row-start-1">
+      <div className="mx-auto flex max-w-[1360px] flex-col gap-6 lg:flex-row">
+        <div className="lg:w-70 lg:shrink-0">
           <BlogSidebar categories={categories} />
         </div>
 
         <section
           aria-labelledby="latest-posts-title"
-          className="min-w-0 lg:col-start-2 lg:row-start-1"
+          className="min-w-0 flex-1"
         >
           <h2 id="latest-posts-title" className="sr-only">
             آخرین مطالب مجله
           </h2>
           <FeaturedPost post={featuredPost} />
 
-          <div className="mt-7 grid justify-items-center gap-x-6 gap-y-7 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-7 grid grid-cols-2 gap-x-4 gap-y-6 md:gap-x-6 md:gap-y-6 xl:grid-cols-3">
             {latestPosts.map((post) => (
               <PostCard
                 key={post.id}
