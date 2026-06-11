@@ -11,6 +11,7 @@
   --color-error: #8d0000;
   --color-warning: #bd9700;
   --color-success: #01813b;
+  --color-lit-gray: #E0E1E5;
 }
 
 @theme inline {
@@ -24,6 +25,7 @@
   --color-error: var(--color-error);
   --color-warning: var(--color-warning);
   --color-success: var(--color-success);
+  --color-lit-gray: var(--color-lit-gray);
   --font-family-sans: var(--font-my-local), Arial, Helvetica, sans-serif;
 }
 
@@ -41,16 +43,18 @@ body {
   background: var(--color-bg);
   color: var(--color-text-default);
   direction: rtl;
-  font-family: YekanBakh ,Arial, Helvetica, sans-serif;
-  text-align: right;
+  font-family: var(--font-my-local), Arial, Helvetica, sans-serif;  text-align: right;
 }
 
 button,
 input,
-textarea {
+textarea
+select
+{
   direction: rtl;
   font: inherit;
   text-align: right;
+  font: inherit;
 }
 
 .post-card-inverted-radius {

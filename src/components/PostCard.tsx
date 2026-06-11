@@ -44,7 +44,7 @@ export default function PostCard({
               fill
               src={imageSrc}
             />
-            <span className="absolute left-3 top-3 rounded-sm bg-secondary px-3 py-2 text-xs font-medium text-white shadow-sm">
+            <span className="absolute left-3 top-3 rounded-sm bg-secondary px-3 py-1.5 text-xs font-medium text-white shadow-sm">
               {category}
             </span>
           </div>

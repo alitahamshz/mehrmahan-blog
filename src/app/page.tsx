@@ -3,8 +3,9 @@ import BlogHeader from "@/components/BlogHeader";
 import BlogPagination from "@/components/BlogPagination";
 import BlogSidebar from "@/components/BlogSidebar";
 import FeaturedPost from "@/components/FeaturedPost";
+import EmptyState from "@/components/ui/EmptyState";
 import PostCard from "@/components/PostCard";
-import { categories, posts } from "@/lib/blog-data";
+import { getBlogs, getBlogCategories } from "@/services";
 
 export const metadata: Metadata = {
   title: "مجله مهرماهان | راهنمای خرید، آموزش و مطالب تخصصی",
@@ -21,9 +22,38 @@ export const metadata: Metadata = {
     locale: "fa_IR",
   },
 };
+type Props = {
+  searchParams: Promise<{
+    page?: string;
+    search?: string;
+    category?: string;
+  }>;
+};
 
-export default function BlogHomePage() {
+export default async function BlogHomePage({ searchParams }: Props) {
+  const params = await searchParams;
+  const page = Number(params.page || 1);
+  const category = params.category ? Number(params.category) : undefined;
+
+  const search = params.search;
+  const blogList = await getBlogs({
+    page,
+    category,
+    search,
+  }).catch(() => ({
+    count: 0,
+    next: null,
+    previous: null,
+    posts: [],
+  }));
+  const totalPages = Math.ceil(blogList.count / 24);
+  console.log({ blogList });
+
+  const posts = blogList.posts.length > 0 ? blogList.posts : [];
   const [featuredPost, ...latestPosts] = posts;
+  const categoryList = await getBlogCategories();
+  console.log({ categoryList });
+  const categories = categoryList.length > 0 ? categoryList : [];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -46,13 +76,16 @@ export default function BlogHomePage() {
   };
 
   return (
-    <main className="min-h-screen bg-bg px-5 py-5 text-right text-text-default" dir="rtl">
+    <main
+      className="min-h-screen bg-bg px-5 py-5 text-right text-text-default"
+      dir="rtl"
+    >
       <script
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         type="application/ld+json"
       />
       <BlogHeader />
-      <div className="mx-auto flex max-w-[1360px] flex-col gap-6 lg:flex-row">
+      <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row">
         <div className="lg:w-70 lg:shrink-0">
           <BlogSidebar categories={categories} />
         </div>
@@ -64,22 +97,32 @@ export default function BlogHomePage() {
           <h2 id="latest-posts-title" className="sr-only">
             آخرین مطالب مجله
           </h2>
-          <FeaturedPost post={featuredPost} />
+          {latestPosts.length === 0 ? (
+            <EmptyState />
+          ) : (
+            <>
+              <FeaturedPost post={featuredPost} />
 
-          <div className="mt-7 grid grid-cols-2 gap-x-4 gap-y-6 md:gap-x-6 md:gap-y-6 xl:grid-cols-3">
-            {latestPosts.map((post) => (
-              <PostCard
-                key={post.id}
-                author={post.author}
-                category={post.category}
-                date={post.date}
-                imageSrc={post.imageSrc}
-                title={post.title}
-              />
-            ))}
-          </div>
-
-          <BlogPagination />
+              <div className="mt-7 grid grid-cols-2 gap-x-4 gap-y-6 md:gap-x-6 md:gap-y-6 xl:grid-cols-3">
+                {latestPosts.map((post) => (
+                  <PostCard
+                    key={post.id}
+                    author={post.author}
+                    category={post.category}
+                    date={post.date}
+                    imageSrc={post.imageSrc}
+                    title={post.title}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+          <BlogPagination
+            currentPage={page}
+            totalPages={totalPages}
+            search={search}
+            category={category}
+          />{" "}
         </section>
       </div>
     </main>
