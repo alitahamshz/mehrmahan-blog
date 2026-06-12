@@ -4,7 +4,7 @@ import {
   getBlogCategories,
 } from "@/features/blog/services";
 
-const SITE_URL = "https://mehrmahan.com";
+const SITE_URL = "http://localhost:3000";
 const PAGE_SIZE = 24;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
