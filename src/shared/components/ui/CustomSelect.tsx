@@ -18,6 +18,7 @@ type CustomSelectProps = {
   hasError?: boolean;
   className?: string;
   id?: string;
+  bgWhite? : boolean;
 };
 
 export default function CustomSelect({
@@ -30,6 +31,7 @@ export default function CustomSelect({
   hasError = false,
   className = "",
   id,
+  bgWhite = false
 }: CustomSelectProps) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -77,7 +79,7 @@ export default function CustomSelect({
         aria-expanded={open}
         aria-invalid={hasError}
         onClick={() => setOpen((o) => !o)}
-        className={`flex h-10 w-full items-center justify-between rounded-lg border bg-white lg:bg-transparent pl-9 pr-4 text-sm outline-none focus:ring-2 ${
+        className={`flex h-10 w-full items-center justify-between rounded-lg border ${bgWhite ? 'bg-transparent' : "bg-white" } pl-9 pr-4 text-sm outline-none focus:ring-2 ${
           selected ? "text-text-default" : "text-text-secondary/60"
         } ${border}`}
       >
@@ -85,21 +87,6 @@ export default function CustomSelect({
       </button>
 
       <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary">
-        {/* <svg
-          fill="none"
-          height="16"
-          viewBox="0 0 16 16"
-          width="16"
-          className={`transition-transform ${open ? "rotate-180" : ""}`}
-        >
-          <path
-            d="M4 6l4 4 4-4"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1.5"
-          />
-        </svg> */}
         <Image
           height={20}
           width={20}

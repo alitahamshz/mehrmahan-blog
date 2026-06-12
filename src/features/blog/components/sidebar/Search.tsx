@@ -14,9 +14,7 @@ export default function BlogSearch() {
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      const params = new URLSearchParams(
-        searchParams.toString()
-      );
+      const params = new URLSearchParams(searchParams.toString());
 
       if (value) {
         params.set("search", value);
@@ -35,9 +33,7 @@ export default function BlogSearch() {
   const clear = () => {
     setValue("");
 
-    const params = new URLSearchParams(
-      searchParams.toString()
-    );
+    const params = new URLSearchParams(searchParams.toString());
 
     params.delete("search");
     params.set("page", "1");
@@ -46,7 +42,7 @@ export default function BlogSearch() {
   };
 
   return (
-    <section aria-labelledby="blog-search-title" className="hidden lg:block">
+    <section aria-labelledby="blog-search-title">
       <h2 className="mb-3 text-right text-lg text-primary text-text-default">
         جستجوی مجله
       </h2>
@@ -61,12 +57,7 @@ export default function BlogSearch() {
         />
 
         <span className="absolute right-3 top-1/2 -translate-y-1/2">
-          <Image
-            src="/icons/search.svg"
-            width={24}
-            height={24}
-            alt="search"
-          />
+          <Image src="/icons/search.svg" width={24} height={24} alt="search" />
         </span>
 
         {value && (

@@ -45,7 +45,7 @@ export default function NewBlogModal({
   };
 
   return (
-    <section className="hidden lg:block">
+    <section>
       <span className="text-lg font-normal mb-3">اضافه کردن بلاگ</span>
       <button
         type="button"

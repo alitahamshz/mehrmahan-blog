@@ -36,6 +36,7 @@ export default function BlogCategories({
     <>
       <div className="md:hidden">
         <CustomSelect
+          bgWhite={false}
           ariaLabel="انتخاب دسته‌بندی"
           value={currentCategory}
           onChange={(v) => applyCategory(v)}
@@ -49,7 +50,7 @@ export default function BlogCategories({
       </div>
 
       <section className="hidden rounded-xl border border-neutral-gray-border bg-transparent p-6 md:block">
-        <h2 className="mb-5 text-lg font-black text-primary">دسته‌بندی‌ها</h2>
+        <h2 className="mb-5 text-lg font-Regular text-primary">دسته‌بندی‌ها</h2>
 
         <ul className="space-y-5">
           {categories.map((c) => {
