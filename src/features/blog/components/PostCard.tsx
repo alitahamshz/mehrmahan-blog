@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ProgressiveImage from "@/shared/components/ui/ProgressiveImage";
 
 type PostCardProps = {
   title: string;
@@ -39,12 +40,7 @@ export default function PostCard({
       <div className="post-card-inverted-radius relative z-10 overflow-hidden border border-neutral-gray-border bg-white md:h-full">
         <div className="p-2 lg:p-3 pb-0">
           <div className="relative h-32.5 overflow-hidden rounded-[7px] md:h-45.25">
-            <Image
-              alt={title}
-              className="h-full w-full object-cover"
-              fill
-              src={imageSrc}
-            />
+            <ProgressiveImage src={imageSrc} alt={title} />
             <span className="absolute left-3 top-3 rounded-sm bg-secondary px-3 py-1.5 text-xs font-medium text-white shadow-sm">
               {category}
             </span>

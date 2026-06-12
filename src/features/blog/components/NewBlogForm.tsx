@@ -132,6 +132,7 @@ export default function NewBlogForm({
           control={control}
           render={({ field }) => (
             <SelectField
+              bgWhite={true}
               id="blog-category"
               name={field.name}
               label="دسته بندی"

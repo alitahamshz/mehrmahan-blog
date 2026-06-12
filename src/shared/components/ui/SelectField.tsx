@@ -20,6 +20,7 @@ export type SelectFieldProps = {
   id?: string;
   name?: string;
   wrapperClassName?: string;
+  bgWhite?: boolean;
 };
 
 export default function SelectField({
@@ -33,6 +34,7 @@ export default function SelectField({
   id,
   name,
   wrapperClassName = "",
+  bgWhite,
 }: SelectFieldProps) {
   const fieldId = id ?? name;
   const errorId = error ? `${fieldId}-error` : undefined;
@@ -52,6 +54,7 @@ export default function SelectField({
       </label>
 
       <CustomSelect
+        bgWhite={bgWhite}
         id={fieldId}
         options={mapped}
         value={value}

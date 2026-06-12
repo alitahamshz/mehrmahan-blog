@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { BlogPost } from "@/features/blog/types/blog-types";
+import ProgressiveImage from "@/shared/components/ui/ProgressiveImage";
 
 type FeaturedPostProps = {
   post: BlogPost;
@@ -8,15 +9,17 @@ type FeaturedPostProps = {
 export default function FeaturedPost({ post }: FeaturedPostProps) {
   return (
     <article className="grid gap-2 grid-cols-2 p-2 overflow-hidden rounded-xl border border-neutral-gray-border bg-transparent text-right lg:grid-cols-[1.05fr_0.95fr]">
-      <div className="relative min-h-45 p-2 order-2 lg:order-2 lg:min-h-70">
-        <Image
+      <div className="relative min-h-45 p-2 order-2 roundde-lg lg:order-2 lg:min-h-70">
+        {/* <Image
           alt={post.title}
           className="object-cover rounded-lg"
           fill
           priority
           sizes="(min-width: 1024px) 430px, 50vw"
           src={post.imageSrc}
-        />
+        /> */}
+        <ProgressiveImage src={post.imageSrc} alt={post.title} />
+
         <span className="absolute hidden md:block right-3 top-3 rounded-sm bg-secondary text-xs font-bold text-white lg:right-5 lg:top-5 lg:px-3 lg:py-1 lg:text-sm">
           {post.category}
         </span>
